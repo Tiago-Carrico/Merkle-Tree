@@ -12,7 +12,7 @@ void printLevel(node* arvore, long nivel);
 struct node {
     long chave;
     long long hash;
-    int nivel;          //TODO probs depois vai ser o que uso para imprimir as cenas por nivel
+    int nivel;          
     struct node *esquerdo;
     struct node *direito;
     struct node *pai;
@@ -25,10 +25,9 @@ int nrNodes = 1;
 long nNiveis;
 
 void addBegin(long chave, long hash, long nivel) {
-    //struct node* novo = (struct node*)malloc(sizeof(struct node));
     struct node* novo = new node;
 
-    novo->chave = chave;            //defini�ao das variaveis do elemento novo
+    novo->chave = chave;            
     novo->hash = hash;
     novo->nivel = nivel;
     novo->esquerdo = NULL;
@@ -44,7 +43,6 @@ void addBegin(long chave, long hash, long nivel) {
     elementosIniciais.push_back(*novo);
     elementosTotais.push_back(*novo);
     nrNodes++;
-            //cout << "confirm added in addBegin(): " << chave << " hash: " << hash << "\n";
 }
 
 void buildCycle(vector<node> camadaAbaixo, long nivel) {
@@ -79,38 +77,12 @@ void buildCycle(vector<node> camadaAbaixo, long nivel) {
             return;
         }
         if (nivel > 1) {
-                    //isto est� aqui dentro do ciclo e nao fora porque se nao os ponteiros saem do scope e ficam sem um valor que seja util, logo preciso de fazer tudo dentro do buildCycle()
             buildCycle(currentElementos, nivel - 1);
         }
     }   
     
     return;
 }
-
-//Replaced it with ht printLevels functions
-/*
-void printTree(struct node *arvore) {
-
-            //cout << "/////////////////////printing begins\n";
-            //cout << "id: " << arvore->chave << " hash: " <<arvore->hash << "\n" << "arvoreEsqeurda chave: " << arvore->esquerdo->chave << "arvoreDireita chave: " << arvore->direito->chave << "\n";
-            //cout << "esquerdo: " << arvore->esquerdo->hash << "\n";
-    cout << arvore->hash << "\n";
-    cout << arvore->esquerdo->hash << "\n";
-    cout << arvore->direito->hash << "\n";
-    if (arvore->esquerdo != NULL) {
-        printTree2(arvore->esquerdo); 
-    }
-    if (arvore->direito != NULL) {
-        printTree2(arvore->direito);
-    }
-}
-
-//TODO not displaying correct answer
-void printTree2(struct node* arvore) {
-
-    //cout << "/////////////////////printing begins\n";
-    //cout << "id: " << arvore->chave << " hash: " <<arvore->hash << "\n" << "arvoreEsqeurda chave: " << arvore->esquerdo->chave << "arvoreDireita chave: " << arvore->direito->chave << "\n";
-    //cout << "esquerdo: " << arvore->esquerdo->hash << "\n";
 
     if (arvore->esquerdo != NULL && arvore->direito != NULL) {
         
@@ -136,7 +108,7 @@ long long hashcode(long long x) {
     return x % 1000000007;
 }
 
-void printLevelOrder(node *arvore)        //probs trocar a height pelo nNiveis e fazer inverso
+void printLevelOrder(node *arvore)        
 {
     int h = nNiveis;
     int i;
@@ -171,7 +143,7 @@ int main()
     }
     nNiveis = (long)nNiveisD;
 
-    while (atual < nrFolhas) {      //preenche o vetor que tem todos os valores de hash das folhas
+    while (atual < nrFolhas) {      
         cin >> input;
 
         elementos.push_back(input);

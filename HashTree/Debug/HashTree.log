@@ -1,0 +1,5 @@
+﻿  HashTree.cpp
+D:\Documentos\Uni\3a\2s\AED\Exs resolvidos\HashTree\HashTree.cpp(172,19): warning C4244: 'initializing': conversion from 'double' to 'long', possible loss of data
+D:\Documentos\Uni\3a\2s\AED\Exs resolvidos\HashTree\HashTree.cpp(203,37): warning C4244: 'argument': conversion from '__int64' to 'long', possible loss of data
+D:\Documentos\Uni\3a\2s\AED\Exs resolvidos\HashTree\HashTree.cpp(169,15): warning C4101: 'input': unreferenced local variable
+  HashTree.vcxproj -> D:\Documentos\Uni\3a\2s\AED\Exs resolvidos\HashTree\Debug\HashTree.exe

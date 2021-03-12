@@ -1,10 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <chrono> 
-#include <random>
 using namespace std;
-using namespace std::chrono;
 
 long long hashcode(long long x);
 void printTree(struct node* arvore);
@@ -31,7 +28,7 @@ void addBegin(long chave, long hash, long nivel) {
     //struct node* novo = (struct node*)malloc(sizeof(struct node));
     struct node* novo = new node;
 
-    novo->chave = chave;            //definiçao das variaveis do elemento novo
+    novo->chave = chave;            //definiï¿½ao das variaveis do elemento novo
     novo->hash = hash;
     novo->nivel = nivel;
     novo->esquerdo = NULL;
@@ -78,12 +75,11 @@ void buildCycle(vector<node> camadaAbaixo, long nivel) {
 
         if (nivel == 1) {
             head = novo;
-            //TODO reactivate the print function bellow, only deactivated for testing purposes
-            //printLevelOrder(head);
+            printLevelOrder(head);
             return;
         }
         if (nivel > 1) {
-                    //isto está aqui dentro do ciclo e nao fora porque se nao os ponteiros saem do scope e ficam sem um valor que seja util, logo preciso de fazer tudo dentro do buildCycle()
+                    //isto estï¿½ aqui dentro do ciclo e nao fora porque se nao os ponteiros saem do scope e ficam sem um valor que seja util, logo preciso de fazer tudo dentro do buildCycle()
             buildCycle(currentElementos, nivel - 1);
         }
     }   
@@ -175,37 +171,15 @@ int main()
     }
     nNiveis = (long)nNiveisD;
 
-    /*
     while (atual < nrFolhas) {      //preenche o vetor que tem todos os valores de hash das folhas
         cin >> input;
 
         elementos.push_back(input);
         atual++;
     }
-    */
-
-    /*SEED*/
-    random_device rd;
-    /*random number generator*/
-    default_random_engine generator(rd());
-    /*distribuiçao*/
-    uniform_int_distribution<long long unsigned> distribution(0, 0xFFFFFFFFFFFFFFFF);
-
- 
-        for (int i = 0; i < 1024; i++) {
-            elementos.push_back(distribution(generator));
-            //cout << 0 + distribution(generator) << "\n";
-        }
-    
-    
-            auto start = high_resolution_clock::now();
-            for (int i = 1; i < nrFolhas + 1; i++) {
-                addBegin(i, hashcode(elementos[i - 1]), nNiveis);
-            }
-            buildCycle(elementosIniciais, nNiveisD - 1);
-            auto stop = high_resolution_clock::now();
-            auto duration = duration_cast<microseconds>(stop - start);
-            cout << "microseconds: " << duration.count() << endl;
-            elementos.clear();
+    for (int i = 1; i < nrFolhas + 1; i++) {
+        addBegin(i, hashcode(elementos[i - 1]), nNiveis);
+    }
+    buildCycle(elementosIniciais, nNiveisD - 1); 
 }
 
